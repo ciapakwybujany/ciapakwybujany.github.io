@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ulubiony wykonawca muzyczny</title>
+<style>
+  body {
+    background-color: black; /* Czarne tło */
+    color: white; /* Biały napis */
+    text-align: center; /* Wyśrodkowanie tekstu */
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  #question {
+    margin-bottom: 20px;
+  }
+  .buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .button {
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    margin: 10px;
+    background-color: rgba(255, 255, 255, 0.2); /* Przezroczyste tło */
+    transition: background-color 0.3s, transform 0.2s;
+  }
+  .button:hover {
+    background-color: rgba(255, 255, 255, 0.3); /* Przezroczyste tło z podświetleniem */
+    transform: scale(1.05); /* Powiększenie */
+  }
+  #contact {
+    margin-top: 50px;
+    position: relative; /* Dodane dla ustawienia modalu */
+  }
+
+  /* Styl modalu */
+  .modal {
+    display: none; /* Ukryj modal domyślnie */
+    position: absolute; /* Zmieniony na absolutny */
+    z-index: 1; /* Powyżej innych elementów */
+    left: 50%; /* Centrowanie */
+    top: 50%; /* Centrowanie */
+    transform: translate(-50%, -50%); /* Centrowanie */
+    background-color: rgba(0,0,0,0.5); /* Przezroczyste tło */
+    color: white;
+    padding: 20px;
+    border-radius: 5px;
+  }
+
+  /* Styl przycisku zamykania */
+  .close {
+    color: #aaa;
+    position: absolute; /* Dodane dla ustawienia modalu */
+    top: 20px; /* Dodane dla ustawienia modalu */
+    right: 20px; /* Dodane dla ustawienia modalu */
+    font-size: 28px;
+    font-weight: bold;
+  }
+
+  /* Styl napisu w lewym górnym rogu */
+  #brand {
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    font-family: 'Arial', sans-serif;
+    color: #fff;
+  }
+
+  /* Styl przycisku kontaktu */
+  #contact-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 18px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    background-color: rgba(255, 255, 255, 0.2);
+    transition: background-color 0.3s, transform 0.2s;
+  }
+
+  #contact-btn:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+    transform: scale(1.05);
+  }
+</style>
+</head>
+<body>
+
+  <div id="brand">zytniak99audio</div> <!-- Napis w lewym górnym rogu -->
+  <h1 id="question">Twój ulubiony wykonawca muzyczny?</h1>
+  <div class="buttons">
+    <button class="button" onclick="openYouTubeProfile('Kabe')">Kabe</button>
+    <button class="button" onclick="openYouTubeProfile('Kizo')">Kizo</button>
+    <button class="button" onclick="openYouTubeProfile('Kukon')">Kukon</button>
+    <button class="button" onclick="openYouTubeProfile('Malik Montana')">Malik Montana</button>
+    <button class="button" onclick="openYouTubeProfile('Gibbs')">Gibbs</button>
+    <button class="button" onclick="openYouTubeProfile('Alberto')">Alberto</button>
+    <button class="button" onclick="openYouTubeProfile('Bibic')">Bibic</button>
+    <button class="button" onclick="openYouTubeProfile('Cypis')">Cypis</button>
+    <button class="button" onclick="openYouTubeProfile('ReTo')">ReTo</button>
+  </div>
+  <button class="button" id="contact">Żadne z powyższych</button>
+
+  <!-- Modal -->
+  <div id="myModal" class="modal">
+    <!-- Zawartość modalu -->
+    <span class="close" onclick="closeModal()">&times;</span>
+    <p>Aby dostarczyć pomysł na wykonawcę, naciśnij przycisk KONTAKT</p>
+  </div>
+
+  <!-- Przycisk "KONTAKT" -->
+  <button id="contact-btn" onclick="openMail()">KONTAKT</button>
+
+  <script>
+    function openYouTubeProfile(artist) {
+      var url;
+      switch (artist) {
+        case 'Kabe':
+          url = 'https://www.youtube.com/channel/UCH_daTxbfZ8pmDBmUF-ezaQ';
+          break;
+        case 'Kizo':
+          url = 'https://www.youtube.com/channel/UCWYX40hkgGvNISu5rX7king';
+          break;
+        case 'Kukon':
+          url = 'https://www.youtube.com/channel/UCvFKvsJU1a7Hp2JQ9HYl5iA';
+          break;
+        case 'Malik Montana':
+          url = 'https://www.youtube.com/channel/UCZRXd_KyHpZ8N2MUoZj2Btw';
+          break;
+        case 'Gibbs':
+          url = 'https://www.youtube.com/channel/UCLCR-FbVVq1GsETOtdGG-mw';
+          break;
+        case 'Alberto':
+          url = 'https://www.youtube.com/channel/UCb3dTtAXc0yrx1cqWIQ2wUA';
+          break;
+        case 'Bibic':
+          url = 'https://www.youtube.com/channel/UC8g8TFIKx2qWztdjF_v8Qfg';
+          break;
+        case 'Cypis':
+          url = 'https://www.youtube.com/channel/UCJgIXd15tXu0bwHrfT_Zhew';
+          break;
+        case 'ReTo':
+          url = 'https://www.youtube.com/channel/UCHwq-fLw-Iw2KRaKv0CF5kw';
+          break;
+        default:
+          return;
+      }
+      window.open(url, '_blank');
+    }
+
+    // Funkcja do zamknięcia modalu
+    function closeModal() {
+      var modal = document.getElementById("myModal");
+      modal.style.display = "none";
+    }
+
+    // Funkcja do otwarcia strony wysyłania maila
+    function openMail() {
+      window.location.href = 'mailto:antek9016@gmail.com';
+    }
+
+    // Pokaż modal po kliknięciu przycisku "Żadne z powyższych"
+    var modal = document.getElementById("myModal");
+    var btn = document.getElementById("contact");
+
+    btn.onclick = function() {
+      modal.style.display = "block";
+    }
+  </script>
+</body>
+</html>
